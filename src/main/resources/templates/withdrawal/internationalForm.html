@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+$("document").ready(function(){
+	
+})
+function displayNotes(select){
+	$("input#noteType").val("");
+	var type = $(select).val();
+	if(type == 'USD'){
+		$(".usdCurrency").show()
+		$(".gbpCurrency").hide()
+		$(".audCurrency").hide()
+	}else if(type == 'GBP'){
+		$(".usdCurrency").hide()
+		$(".gbpCurrency").show()
+		$(".audCurrency").hide()
+	}else if(type == 'AUD'){
+		$(".usdCurrency").hide()
+		$(".gbpCurrency").hide()
+		$(".audCurrency").show()
+	}
+}
+function onchangeChoiceOfNotes(select){
+	var note = $(select).val();
+	$("input#noteType").val(note);
+}
+</script>
+<body>
+<th:block th:insert="header.html::header"></th:block>
+<div class="container">
+  <h2>International currency withdrawal</h2>
+  <h4 th:if="${errorMsg != null}" th:text="${errorMsg}" style="color: red;"></h4>
+  <form th:action="@{/withdrawal/save}" th:object="${withdrawal}" method="post">
+    <input type = "hidden" th:field="*{noteType}"/>
+    <select class="form-control" th:field="*{currencyType}" onchange="displayNotes(this)">
+      	<option value="USD">USD</option>
+      	<option value="GBP">GBP</option>
+      	<option value="AUD">AUD</option>
+      </select>
+     <div class="form-group usdCurrency">
+	      <label >Choice of notes:</label>
+	      <select class="form-control "  onchange="onchangeChoiceOfNotes(this)">
+	      		<option value="">Select Choice of notes</option>
+				<option value="10">10 USD</option>
+		      	<option value="50">50 USD</option>
+		      	<option value="100">100 USD</option>
+		      	<option value="500">500 USD</option>
+	      </select>
+      </div>
+      <div class="form-group gbpCurrency" style="display: none;">
+      	<label >Choice of notes:</label>
+	      <select class="form-control "  onchange="onchangeChoiceOfNotes(this)" >
+	      <option value="">Select Choice of notes</option>
+			<option value="20">20 GBP</option>
+	      	<option value="50">50 GBP</option>
+	      	<option value="500">500 GBP</option>
+	      	<option value="1000">1000 GBP</option>
+	      </select>
+	    </div> 
+	    <div class="form-group audCurrency" style="display: none;">
+      	<label >Choice of notes:</label>
+	      <select class="form-control "  onchange="onchangeChoiceOfNotes(this)">
+	      	<option value="">Select Choice of notes</option>
+	      	<option value="100">100 AUD</option>
+	      	<option value="500">500 AUD</option>
+	      	<option value="1000">1000 AUD</option>
+	      </select>
+    </div>
+    <div class="form-group">
+      <label>Note Quantity</label>
+      <input type="number" class="form-control"  placeholder="Enter quantity" th:field="*{quantity}">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>

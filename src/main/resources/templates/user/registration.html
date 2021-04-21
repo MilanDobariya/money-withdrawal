@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<th:block th:insert="header.html::header"></th:block>
+<div class="container">
+  <h2>User Registration form</h2>
+  <form th:action="@{/user/save}" th:object="${user}" method="post">
+    <div class="form-group">
+      <label >Name:</label>
+      <input type="text" class="form-control"  placeholder="Enter name" th:field="*{name}">
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" class="form-control"  placeholder="Enter email" th:field="*{email}">
+    </div>
+    <div class="form-group">
+      <label >Mobile:</label>
+      <input type="text" class="form-control"  placeholder="Enter mobile" th:field="*{mobile}">
+    </div>
+    <div class="form-group">
+      <label >Age:</label>
+      <input type="number" class="form-control"  placeholder="Enter age" th:field="*{age}">
+    </div>
+    <div class="form-group">
+      <label >Age:</label>
+      <select class="form-control" th:field="*{gender}">
+      	<option value="male">Male</option>
+      	<option value="female">Female</option>
+      </select>
+    </div>
+     <div class="form-group">
+      <label >Monthly salary:</label>
+      <input type="number" class="form-control"  placeholder="Enter Monthly salary" th:field="*{salary}">
+    </div>
+    <!--  <div class="form-group">
+      <label >Monthly withdrawal limit (MWL):</label>
+      <input type="number" class="form-control"  placeholder="Enter Monthly withdrawal limit (MWL)" th:field="*{mwl}">
+    </div> -->
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+	"result": "success",
+	"documentation": "https://www.exchangerate-api.com/docs",
+	"terms_of_use": "https://www.exchangerate-api.com/terms",
+	"time_last_update_utc": "Fri, 27 Mar 2020 00:00:00 +0000",
+	"time_next_update_utc": "Sat, 28 Mar 2020 00:00:00 +0000",
+	"base_code": "IND",
+	"conversion_rates": {
+		"USD": "0.013",
+		"AUD": "0.017",
+		"GBP": "0.0095"
+	}
+}

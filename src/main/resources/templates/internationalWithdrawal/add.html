@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<th:block th:insert="header.html::header"></th:block>
+<div class="container">
+  <h2>INR Withdrawal</h2>
+  <h4 th:if="${errorMsg != null}" th:text="${errorMsg}" style="color: red;"></h4>
+  <form th:action="@{/withdrawal/save}" th:object="${withdrawal}" method="post">
+    <div class="form-group">
+      <label>Amount</label>
+      <input type="number" class="form-control"  placeholder="Enter Amount" th:field="*{amount}">
+    </div>
+     <div class="form-group">
+      <label >Choice of notes:</label>
+      <select class="form-control" th:field="*{noteType}">
+      	<option value="50">50</option>
+      	<option value="100">100</option>
+      	<option value="500">500</option>
+      	<option value="2000">2000</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>
